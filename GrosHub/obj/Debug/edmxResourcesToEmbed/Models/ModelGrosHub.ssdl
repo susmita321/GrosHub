@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GrosHUbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'GrosHUb.dbo.ProductCategory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ProductCategory">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+      <PropertyRef Name="CategoryName" />
+    </Key>
+    <Property Name="CategoryId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CategoryName" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'GrosHUb.dbo.Products' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="ProductId" />
+      <PropertyRef Name="ProductName" />
+      <PropertyRef Name="CategoryId" />
+      <PropertyRef Name="Description" />
+    </Key>
+    <Property Name="ProductId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ProductName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="CategoryId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="500" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'GrosHUb.dbo.Rating' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Rating">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RatingCounter" />
+    </Key>
+    <Property Name="UserId" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProductId" Type="uniqueidentifier" />
+    <Property Name="RatingCounter" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'GrosHUb.dbo.Review' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Review">
+    <Key>
+      <PropertyRef Name="ReviewId" />
+      <PropertyRef Name="CustomerId" />
+      <PropertyRef Name="ProductId" />
+    </Key>
+    <Property Name="ReviewId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerId" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProductId" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'GrosHUb.dbo.ShippingAddress' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ShippingAddress">
+    <Key>
+      <PropertyRef Name="AddressId" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="AddressId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="500" />
+    <Property Name="TownCity" Type="nvarchar" MaxLength="50" />
+    <Property Name="Country" Type="nvarchar" MaxLength="50" />
+    <Property Name="State" Type="nvarchar" MaxLength="50" />
+    <Property Name="Pin" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'GrosHUb.dbo.User' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="UserName" />
+      <PropertyRef Name="Password" />
+      <PropertyRef Name="Gender" />
+      <PropertyRef Name="PhoneNo" />
+      <PropertyRef Name="Email" />
+      <PropertyRef Name="Address" />
+      <PropertyRef Name="TownCity" />
+      <PropertyRef Name="Country" />
+      <PropertyRef Name="State" />
+      <PropertyRef Name="Pin" />
+    </Key>
+    <Property Name="UserId" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Gender" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="PhoneNo" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Address" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="TownCity" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Country" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="State" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Pin" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="GrosHUbModelStoreContainer">
+    <EntitySet Name="ProductCategory" EntityType="Self.ProductCategory" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ProductCategory].[CategoryId] AS [CategoryId], 
+    [ProductCategory].[CategoryName] AS [CategoryName]
+    FROM [dbo].[ProductCategory] AS [ProductCategory]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Products" EntityType="Self.Products" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Products].[ProductId] AS [ProductId], 
+    [Products].[ProductName] AS [ProductName], 
+    [Products].[CategoryId] AS [CategoryId], 
+    [Products].[Description] AS [Description]
+    FROM [dbo].[Products] AS [Products]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Rating" EntityType="Self.Rating" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Rating].[UserId] AS [UserId], 
+    [Rating].[ProductId] AS [ProductId], 
+    [Rating].[RatingCounter] AS [RatingCounter]
+    FROM [dbo].[Rating] AS [Rating]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Review" EntityType="Self.Review" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Review].[ReviewId] AS [ReviewId], 
+    [Review].[CustomerId] AS [CustomerId], 
+    [Review].[ProductId] AS [ProductId]
+    FROM [dbo].[Review] AS [Review]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="ShippingAddress" EntityType="Self.ShippingAddress" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ShippingAddress].[AddressId] AS [AddressId], 
+    [ShippingAddress].[UserId] AS [UserId], 
+    [ShippingAddress].[Address] AS [Address], 
+    [ShippingAddress].[TownCity] AS [TownCity], 
+    [ShippingAddress].[Country] AS [Country], 
+    [ShippingAddress].[State] AS [State], 
+    [ShippingAddress].[Pin] AS [Pin]
+    FROM [dbo].[ShippingAddress] AS [ShippingAddress]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="User" EntityType="Self.User" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [User].[UserId] AS [UserId], 
+    [User].[UserName] AS [UserName], 
+    [User].[Password] AS [Password], 
+    [User].[Gender] AS [Gender], 
+    [User].[PhoneNo] AS [PhoneNo], 
+    [User].[Email] AS [Email], 
+    [User].[Address] AS [Address], 
+    [User].[TownCity] AS [TownCity], 
+    [User].[Country] AS [Country], 
+    [User].[State] AS [State], 
+    [User].[Pin] AS [Pin]
+    FROM [dbo].[User] AS [User]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>
