@@ -4,9 +4,9 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="GrosHUbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="GrosHUbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <!--Errors Found During Generation:
-warning 6002: The table/view 'GrosHUb.dbo.ProductCategory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'GrosHub.dbo.ProductCategory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ProductCategory">
           <Key>
             <PropertyRef Name="CategoryId" />
@@ -16,7 +16,7 @@ warning 6002: The table/view 'GrosHUb.dbo.ProductCategory' does not have a prima
           <Property Name="CategoryName" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'GrosHUb.dbo.Products' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'GrosHub.dbo.Products' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Products">
           <Key>
             <PropertyRef Name="ProductId" />
@@ -30,7 +30,7 @@ warning 6002: The table/view 'GrosHUb.dbo.Products' does not have a primary key 
           <Property Name="Description" Type="nvarchar" MaxLength="500" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'GrosHUb.dbo.Rating' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'GrosHub.dbo.Rating' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Rating">
           <Key>
             <PropertyRef Name="UserId" />
@@ -41,7 +41,7 @@ warning 6002: The table/view 'GrosHUb.dbo.Rating' does not have a primary key de
           <Property Name="RatingCounter" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'GrosHUb.dbo.Review' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'GrosHub.dbo.Review' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Review">
           <Key>
             <PropertyRef Name="ReviewId" />
@@ -53,7 +53,7 @@ warning 6002: The table/view 'GrosHUb.dbo.Review' does not have a primary key de
           <Property Name="ProductId" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'GrosHUb.dbo.ShippingAddress' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'GrosHub.dbo.ShippingAddress' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ShippingAddress">
           <Key>
             <PropertyRef Name="AddressId" />
@@ -67,8 +67,15 @@ warning 6002: The table/view 'GrosHUb.dbo.ShippingAddress' does not have a prima
           <Property Name="State" Type="nvarchar" MaxLength="50" />
           <Property Name="Pin" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="tblAdmin">
+          <Key>
+            <PropertyRef Name="AdminId" />
+          </Key>
+          <Property Name="AdminId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'GrosHUb.dbo.User' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'GrosHub.dbo.User' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="UserId" />
@@ -96,6 +103,7 @@ warning 6002: The table/view 'GrosHUb.dbo.User' does not have a primary key defi
           <Property Name="Pin" Type="int" Nullable="false" />
         </EntityType>
         <EntityContainer Name="GrosHUbModelStoreContainer">
+          <EntitySet Name="tblAdmin" EntityType="Self.tblAdmin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductCategory" EntityType="Self.ProductCategory" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [ProductCategory].[CategoryId] AS [CategoryId], 
@@ -151,8 +159,7 @@ warning 6002: The table/view 'GrosHUb.dbo.User' does not have a primary key defi
     FROM [dbo].[User] AS [User]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="GrosHUbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -241,7 +248,15 @@ warning 6002: The table/view 'GrosHUb.dbo.User' does not have a primary key defi
           <EntitySet Name="Reviews" EntityType="Self.Review" />
           <EntitySet Name="ShippingAddresses" EntityType="Self.ShippingAddress" />
           <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="tblAdmins" EntityType="GrosHUbModel.tblAdmin" />
         </EntityContainer>
+        <EntityType Name="tblAdmin">
+          <Key>
+            <PropertyRef Name="AdminId" />
+          </Key>
+          <Property Name="AdminId" Type="Guid" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -311,6 +326,14 @@ warning 6002: The table/view 'GrosHUb.dbo.User' does not have a primary key defi
                 <ScalarProperty Name="Country" ColumnName="Country" />
                 <ScalarProperty Name="State" ColumnName="State" />
                 <ScalarProperty Name="Pin" ColumnName="Pin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblAdmins">
+            <EntityTypeMapping TypeName="GrosHUbModel.tblAdmin">
+              <MappingFragment StoreEntitySet="tblAdmin">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="AdminId" ColumnName="AdminId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

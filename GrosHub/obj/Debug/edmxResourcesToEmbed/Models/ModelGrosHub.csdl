@@ -85,5 +85,13 @@
     <EntitySet Name="Reviews" EntityType="Self.Review" />
     <EntitySet Name="ShippingAddresses" EntityType="Self.ShippingAddress" />
     <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="tblAdmins" EntityType="GrosHUbModel.tblAdmin" />
   </EntityContainer>
+  <EntityType Name="tblAdmin">
+    <Key>
+      <PropertyRef Name="AdminId" />
+    </Key>
+    <Property Name="AdminId" Type="Guid" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
 </Schema>

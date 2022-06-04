@@ -31,5 +31,6 @@ namespace GrosHub.Models
         public virtual DbSet<Review> Reviews { get; set; }
         public virtual DbSet<ShippingAddress> ShippingAddresses { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<tblAdmin> tblAdmins { get; set; }
     }
 }
