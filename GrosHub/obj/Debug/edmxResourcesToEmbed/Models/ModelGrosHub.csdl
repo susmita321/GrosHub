@@ -91,7 +91,8 @@
     <Key>
       <PropertyRef Name="AdminId" />
     </Key>
-    <Property Name="AdminId" Type="Guid" Nullable="false" />
+    <Property Name="AdminId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AdminName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>

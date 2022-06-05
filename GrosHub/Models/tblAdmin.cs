@@ -11,17 +11,11 @@ namespace GrosHub.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class tblAdmin
     {
-        [Required(ErrorMessage = "Admin ID  Can not be blank")]
-        [Display(Name ="Admin ID")]
-        public System.Guid AdminId { get; set; }
-
-        [Required(ErrorMessage ="Password Can not be blank")]
-        [Display(Name ="Password")]
-        [DataType(DataType.Password)]
+        public string AdminId { get; set; }
         public string Password { get; set; }
+        public string AdminName { get; set; }
     }
 }

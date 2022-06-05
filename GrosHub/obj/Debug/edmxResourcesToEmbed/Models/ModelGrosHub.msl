@@ -70,6 +70,7 @@
     <EntitySetMapping Name="tblAdmins">
       <EntityTypeMapping TypeName="GrosHUbModel.tblAdmin">
         <MappingFragment StoreEntitySet="tblAdmin">
+          <ScalarProperty Name="AdminName" ColumnName="AdminName" />
           <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="AdminId" ColumnName="AdminId" />
         </MappingFragment>

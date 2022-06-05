@@ -19,10 +19,11 @@ namespace GrosHub.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Index(tblAdmin obj)
         {
-            var CheckLogIn = db.tblAdmins.Where(x=>x.AdminId.Equals(obj.AdminId) && x.Password.Equals(obj.Password)).FirstOrDefault();
+            var CheckLogIn = db.tblAdmins.Where(x => x.AdminId.Equals(obj.AdminId) && x.Password.Equals(obj.Password)).FirstOrDefault();
             if (CheckLogIn != null)
             {
                 Session["AdminId"] = obj.AdminId.ToString();
+               // Session["AdminName"] = db.tblAdmins.
                 return RedirectToAction("Home");
             }
             else
@@ -34,6 +35,13 @@ namespace GrosHub.Areas.Admin.Controllers
         public ActionResult Home()
         {
             return View();
+        }
+
+        public ActionResult LogOut()
+        {
+            Session.Clear();
+            Session.Abandon();
+            return RedirectToAction("Index");
         }
     }
 }

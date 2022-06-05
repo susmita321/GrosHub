@@ -56,7 +56,7 @@
                 {
                     @Html.ActionLink("LogOut","LogOut","Home")
                 }
-                Welcome: @Session["AdminId"]
+                Hello: @Session["AdminId"]
 
 
             </div>
@@ -124,7 +124,13 @@
                                 </ul>
                             </div>
                             <div class="header__top__right__auth">
-                                <a href="#"><i class="fa fa-user"></i> Login</a>
+                                @*<a href="#"><i class="fa fa-user"></i> Login</a>*@
+
+                                @if (Session["AdminId"] != null)
+                                {
+                                    @Html.ActionLink("LogOut", "LogOut", "Home")
+                                }
+                                Hello: @Session["AdminId"]
                             </div>
                         </div>
                     </div>

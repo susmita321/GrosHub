@@ -71,8 +71,9 @@ warning 6002: The table/view 'GrosHub.dbo.ShippingAddress' does not have a prima
           <Key>
             <PropertyRef Name="AdminId" />
           </Key>
-          <Property Name="AdminId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AdminId" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="AdminName" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'GrosHub.dbo.User' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -254,8 +255,9 @@ warning 6002: The table/view 'GrosHub.dbo.User' does not have a primary key defi
           <Key>
             <PropertyRef Name="AdminId" />
           </Key>
-          <Property Name="AdminId" Type="Guid" Nullable="false" />
+          <Property Name="AdminId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AdminName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -332,6 +334,7 @@ warning 6002: The table/view 'GrosHub.dbo.User' does not have a primary key defi
           <EntitySetMapping Name="tblAdmins">
             <EntityTypeMapping TypeName="GrosHUbModel.tblAdmin">
               <MappingFragment StoreEntitySet="tblAdmin">
+                <ScalarProperty Name="AdminName" ColumnName="AdminName" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="AdminId" ColumnName="AdminId" />
               </MappingFragment>
