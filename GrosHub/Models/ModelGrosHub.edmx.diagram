@@ -5,13 +5,13 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="2bb45a4ce26940e58b04123fa6b82934" Name="Diagram1">
-        <EntityTypeShape EntityType="GrosHUbModel.ProductCategory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="GrosHUbModel.Product" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="GrosHUbModel.Rating" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="GrosHUbModel.Review" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="GrosHUbModel.ShippingAddress" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="GrosHUbModel.User" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="GrosHUbModel.tblAdmin" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="GrosHUbModel.tblAdmin" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="GrosHUbModel.User" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="GrosHUbModel.ProductCategory" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="GrosHUbModel.Product" Width="1.5" PointX="4.75" PointY="3.75" />
+        <EntityTypeShape EntityType="GrosHUbModel.Rating" Width="1.5" PointX="0.75" PointY="5.75" />
+        <EntityTypeShape EntityType="GrosHUbModel.Review" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="GrosHUbModel.ShippingAddress" Width="1.5" PointX="2.75" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

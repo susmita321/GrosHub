@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace GrosHub.Areas.Admin.Controllers
 {
-    public class HomeController : Controller
+    public class AdminHomeController : Controller
     {
         // GET: Admin/Home
         private GrosHUbDBContext db = new GrosHUbDBContext();

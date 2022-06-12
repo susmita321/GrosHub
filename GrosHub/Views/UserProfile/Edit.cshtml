@@ -1,0 +1,48 @@
+﻿@model GrosHub.Models.User
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>User</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.UserId)
+
+        @Html.HiddenFor(model => model.UserName)
+
+        @Html.HiddenFor(model => model.Password)
+
+        @Html.HiddenFor(model => model.Gender)
+
+        @Html.HiddenFor(model => model.PhoneNo)
+
+        @Html.HiddenFor(model => model.Email)
+
+        @Html.HiddenFor(model => model.Address)
+
+        @Html.HiddenFor(model => model.TownCity)
+
+        @Html.HiddenFor(model => model.Country)
+
+        @Html.HiddenFor(model => model.State)
+
+        @Html.HiddenFor(model => model.Pin)
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+

@@ -24,6 +24,7 @@ namespace GrosHub.Models
         public string TownCity { get; set; }
         public string Country { get; set; }
         public string State { get; set; }
-        public int Pin { get; set; }
+        public Nullable<int> Pin { get; set; }
+        public string ProfilePicture { get; set; }
     }
 }

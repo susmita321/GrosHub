@@ -1,12 +1,46 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="GrosHUbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="GrosHUbDBContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tblAdmins" EntityType="GrosHUbModel.tblAdmin" />
+    <EntitySet Name="Users" EntityType="GrosHUbModel.User" />
+    <EntitySet Name="ProductCategories" EntityType="GrosHUbModel.ProductCategory" />
+    <EntitySet Name="Products" EntityType="GrosHUbModel.Product" />
+    <EntitySet Name="Ratings" EntityType="GrosHUbModel.Rating" />
+    <EntitySet Name="Reviews" EntityType="GrosHUbModel.Review" />
+    <EntitySet Name="ShippingAddresses" EntityType="GrosHUbModel.ShippingAddress" />
+  </EntityContainer>
+  <EntityType Name="tblAdmin">
+    <Key>
+      <PropertyRef Name="AdminId" />
+    </Key>
+    <Property Name="AdminId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AdminName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TownCity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Pin" Type="Int32" />
+    <Property Name="ProfilePicture" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
   <EntityType Name="ProductCategory">
     <Key>
       <PropertyRef Name="CategoryId" />
       <PropertyRef Name="CategoryName" />
     </Key>
     <Property Name="CategoryId" Type="Guid" Nullable="false" />
-    <Property Name="CategoryName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CategoryName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="Product">
     <Key>
@@ -16,16 +50,16 @@
       <PropertyRef Name="Description" />
     </Key>
     <Property Name="ProductId" Type="Guid" Nullable="false" />
-    <Property Name="ProductName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="CategoryId" Type="Guid" Nullable="false" />
-    <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Rating">
     <Key>
       <PropertyRef Name="UserId" />
       <PropertyRef Name="RatingCounter" />
     </Key>
-    <Property Name="UserId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="ProductId" Type="Guid" />
     <Property Name="RatingCounter" Type="Int32" Nullable="false" />
   </EntityType>
@@ -36,8 +70,8 @@
       <PropertyRef Name="ProductId" />
     </Key>
     <Property Name="ReviewId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="CustomerId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="ProductId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CustomerId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ProductId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="ShippingAddress">
     <Key>
@@ -45,54 +79,11 @@
       <PropertyRef Name="UserId" />
     </Key>
     <Property Name="AddressId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="UserId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="TownCity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Pin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-  </EntityType>
-  <EntityType Name="User">
-    <Key>
-      <PropertyRef Name="UserId" />
-      <PropertyRef Name="UserName" />
-      <PropertyRef Name="Password" />
-      <PropertyRef Name="Gender" />
-      <PropertyRef Name="PhoneNo" />
-      <PropertyRef Name="Email" />
-      <PropertyRef Name="Address" />
-      <PropertyRef Name="TownCity" />
-      <PropertyRef Name="Country" />
-      <PropertyRef Name="State" />
-      <PropertyRef Name="Pin" />
-    </Key>
-    <Property Name="UserId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="PhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="TownCity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Pin" Type="Int32" Nullable="false" />
-  </EntityType>
-  <EntityContainer Name="GrosHUbDBContext" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="ProductCategories" EntityType="Self.ProductCategory" />
-    <EntitySet Name="Products" EntityType="Self.Product" />
-    <EntitySet Name="Ratings" EntityType="Self.Rating" />
-    <EntitySet Name="Reviews" EntityType="Self.Review" />
-    <EntitySet Name="ShippingAddresses" EntityType="Self.ShippingAddress" />
-    <EntitySet Name="Users" EntityType="Self.User" />
-    <EntitySet Name="tblAdmins" EntityType="GrosHUbModel.tblAdmin" />
-  </EntityContainer>
-  <EntityType Name="tblAdmin">
-    <Key>
-      <PropertyRef Name="AdminId" />
-    </Key>
-    <Property Name="AdminId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="AdminName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>

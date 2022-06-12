@@ -130,13 +130,14 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminHomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminLogInController.cs" />
     <Compile Include="Areas\Admin\Controllers\FeedBackController.cs" />
-    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductCategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UserHomeController.cs" />
+    <Compile Include="Controllers\UserProfileController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -179,7 +180,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminHome\Home.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminHome\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminLogIn\Create.cshtml" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -231,6 +234,7 @@
     <Content Include="Content\img\latest-product\lp-2.jpg" />
     <Content Include="Content\img\latest-product\lp-3.jpg" />
     <Content Include="Content\img\logo.png" />
+    <Content Include="Content\img\MyProfile.png" />
     <Content Include="Content\img\payment-item.png" />
     <Content Include="Content\img\product\details\product-details-1.jpg" />
     <Content Include="Content\img\product\details\product-details-2.jpg" />
@@ -301,13 +305,6 @@
     </Content>
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\Shared\_LayoutAdmin.cshtml" />
-    <Content Include="Areas\Admin\Views\AdminLogIn\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Home\Home.cshtml" />
-    <Content Include="Areas\Admin\Views\ProductCategories\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\ProductCategories\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\ProductCategories\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\ProductCategories\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\ProductCategories\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -319,6 +316,16 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutMaster.cshtml" />
+    <Content Include="Views\UserProfile\Create.cshtml" />
+    <Content Include="Views\UserProfile\Delete.cshtml" />
+    <Content Include="Views\UserProfile\Details.cshtml" />
+    <Content Include="Views\UserProfile\Edit.cshtml" />
+    <Content Include="Views\UserProfile\Index.cshtml" />
+    <Content Include="Views\UserProfile\userLogin.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -330,17 +337,16 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Shared\_LayoutMaster.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\UserProfile\ProfilePicture.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\FeedBack\" />
     <Folder Include="Areas\Admin\Views\Order\" />
+    <Folder Include="Areas\Admin\Views\ProductCategories\" />
     <Folder Include="Areas\Admin\Views\Product\" />
+    <Folder Include="Content\profilePicture\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
