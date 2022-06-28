@@ -60,13 +60,10 @@ namespace GrosHub.Controllers
         }
 
         // GET: UserProfile/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit()
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            User user = db.Users.Find(id);
+            string UserId = Convert.ToString(Session["UserId"]);
+            User user = db.Users.Find(UserId);
             if (user == null)
             {
                 return HttpNotFound();
@@ -128,6 +125,16 @@ namespace GrosHub.Controllers
             if (CheckUserLogin != null)
             {
                 Session["UserId"] = obj.UserId.ToString();
+                string ProfilePicture = "";
+                if (CheckUserLogin.ProfilePicture == null)
+                {
+                    ProfilePicture ="/Content/img/MyProfile.png";
+                }
+                else
+                {
+                    ProfilePicture = "/Content/"+CheckUserLogin.ProfilePicture.ToString();
+                }
+                Session["ProfilePicture"] = ProfilePicture;
                 return RedirectToAction("Index", "Home");
             }
             else
@@ -167,12 +174,14 @@ namespace GrosHub.Controllers
                         string _path = Path.Combine(Server.MapPath("~/Content/profilePicture"), UserId+ext);
                         file.SaveAs(_path);
 
-                        User obj = new User();
-                        obj.UserId = UserId;
-                        obj.ProfilePicture = "profilePicture/" + UserId + ext;
-                        db.Entry(obj).State = EntityState.Modified;
+                        
+                        var _user = db.Users.Where(x=>x.UserId.Equals(UserId)).FirstOrDefault();
+
+                        _user.ProfilePicture = "profilePicture/" + UserId + ext;
+                        db.Entry(_user).State = EntityState.Modified;
                         db.SaveChanges();
                         ViewBag.Message = "File Uploaded Successfully!!";
+                        @Session["ProfilePicture"] = "/Content/"+_user.ProfilePicture;
                     }
                     else
                     {
@@ -192,7 +201,35 @@ namespace GrosHub.Controllers
         }
         public ActionResult ChangePassword()
         {
-            return View();
+            string UserId = Convert.ToString(Session["UserId"]);
+            User user = db.Users.Find(UserId);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            return View(user);
+        }
+        [HttpPost]
+        public ActionResult ChangePassword(User _user)
+        {
+            if (ModelState.IsValid)
+            {
+                var PasswordCheck = db.Users.Where(x => x.Password.Equals(_user.Password) && x.UserId.Equals(_user.UserId)).FirstOrDefault();
+                if(PasswordCheck!=null)
+                {
+                    PasswordCheck.Password = _user.NewPassword;
+                    db.Entry(PasswordCheck).State = EntityState.Modified;
+                    db.SaveChanges();
+                    ViewBag.Message = "Password has been changed successfully!";
+                }
+                else
+                {
+                    ViewBag.Message = "Old Password does not matched!";
+                }
+               
+                return View();
+            }
+            return View(_user);
         }
         public ActionResult Settings()
         {

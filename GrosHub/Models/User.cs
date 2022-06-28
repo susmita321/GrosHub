@@ -11,12 +11,23 @@ namespace GrosHub.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class User
     {
         public string UserId { get; set; }
         public string UserName { get; set; }
+
+        [Display(Name = "Old Password")]
         public string Password { get; set; }
+
+
+        [Display(Name = "New Password")]
+        public string NewPassword { get; set; }
+
+        [Display(Name = "Confirm Password")]
+        //[Compare(CompareAttribute.Equals("NewPassword"))]
+        public string ConfirmPassword { get; set; }
         public string Gender { get; set; }
         public string PhoneNo { get; set; }
         public string Email { get; set; }
