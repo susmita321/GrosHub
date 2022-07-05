@@ -14,8 +14,9 @@ namespace GrosHub.Models
     
     public partial class Rating
     {
+        public int ID { get; set; }
         public string UserId { get; set; }
         public Nullable<System.Guid> ProductId { get; set; }
-        public int RatingCounter { get; set; }
+        public Nullable<int> RatingCounter { get; set; }
     }
 }

@@ -17,11 +17,17 @@ namespace GrosHub.Areas.Admin.Controllers
         // GET: Admin/ProductCategories
         public ActionResult Index()
         {
+            ViewBag.HomeActive = "";
+            ViewBag.CategoryActive = "class=active";
+            ViewBag.ProductActive = "";
+            ViewBag.StockActive = "";
+            ViewBag.OrderActive = "";
+            ViewBag.UserActive = "";
             return View(db.ProductCategories.ToList());
         }
 
         // GET: Admin/ProductCategories/Details/5
-        public ActionResult Details(Guid? id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -50,7 +56,6 @@ namespace GrosHub.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                productCategory.CategoryId = Guid.NewGuid();
                 db.ProductCategories.Add(productCategory);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -60,7 +65,7 @@ namespace GrosHub.Areas.Admin.Controllers
         }
 
         // GET: Admin/ProductCategories/Edit/5
-        public ActionResult Edit(Guid? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -91,7 +96,7 @@ namespace GrosHub.Areas.Admin.Controllers
         }
 
         // GET: Admin/ProductCategories/Delete/5
-        public ActionResult Delete(Guid? id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -108,7 +113,7 @@ namespace GrosHub.Areas.Admin.Controllers
         // POST: Admin/ProductCategories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(Guid id)
+        public ActionResult DeleteConfirmed(int id)
         {
             ProductCategory productCategory = db.ProductCategories.Find(id);
             db.ProductCategories.Remove(productCategory);

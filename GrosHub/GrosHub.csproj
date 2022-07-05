@@ -133,9 +133,11 @@
     <Compile Include="Areas\Admin\Controllers\AdminHomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminLogInController.cs" />
     <Compile Include="Areas\Admin\Controllers\FeedBackController.cs" />
-    <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrdersController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductCategoriesController.cs" />
-    <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\StocksController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\UserProfileController.cs" />
@@ -157,10 +159,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelGrosHub.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Order.cs">
+      <DependentUpon>ModelGrosHub.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Product.cs">
       <DependentUpon>ModelGrosHub.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ProductCategory.cs">
+      <DependentUpon>ModelGrosHub.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProductGallery.cs">
       <DependentUpon>ModelGrosHub.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Rating.cs">
@@ -170,6 +178,9 @@
       <DependentUpon>ModelGrosHub.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ShippingAddress.cs">
+      <DependentUpon>ModelGrosHub.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Stock.cs">
       <DependentUpon>ModelGrosHub.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblAdmin.cs">
@@ -306,6 +317,31 @@
     </Content>
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductCategories\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductCategories\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductCategories\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductCategories\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductCategories\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Stocks\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Stocks\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Stocks\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Stocks\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Stocks\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -341,16 +377,14 @@
     <Content Include="Views\UserProfile\ChangePassword.cshtml" />
     <Content Include="Views\UserProfile\Edit.cshtml" />
     <Content Include="Views\UserProfile\Settings.cshtml" />
-    <Content Include="Views\Product\ProductList.cshtml" />
+    <Content Include="Views\Shared\ProductList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\FeedBack\" />
-    <Folder Include="Areas\Admin\Views\Order\" />
-    <Folder Include="Areas\Admin\Views\ProductCategories\" />
-    <Folder Include="Areas\Admin\Views\Product\" />
     <Folder Include="Content\profilePicture\" />
+    <Folder Include="Views\Product\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

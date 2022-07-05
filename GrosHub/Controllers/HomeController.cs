@@ -12,20 +12,31 @@ namespace GrosHub.Controllers
         GrosHUbDBContext db = new GrosHUbDBContext();
         public ActionResult Index()
         {
+
+            var product = db.Products;
+            if(Session["CategoryId"]!=null)
+            {
+                Guid CategoryId =(Guid)Session["CategoryId"];
+                //product = db.Products.Where(x => x.CategoryId==CategoryId).FirstOrDefault();
+
+            }
             if (Session["UserId"] != null)
             {
                 string UserId = Convert.ToString(Session["UserId"]);
-                var user = db.Users.Where(x => x.UserId.Equals(UserId)).FirstOrDefault();
-                return View(user);
+                //var user = db.Users.Where(x => x.UserId.Equals(UserId)).FirstOrDefault();
+               
+              
             }
-            else
-            {
-                return View();
-            }
-            
-        }
+            return View(product);
 
-        public ActionResult About()
+        }
+        [HttpPost]
+        public ActionResult Index(Product obj)
+        {
+            Session["CategoryId"] = "89408cb9-4a37-44c1-8b7f-7da17416dcda";
+            return RedirectToAction("Index");
+        }
+            public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
 

@@ -12,6 +12,14 @@
     <h4>ProductCategory</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CategoryName)
+        </dd>
+
     </dl>
 
     @using (Html.BeginForm()) {

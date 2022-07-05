@@ -34,6 +34,12 @@ namespace GrosHub.Areas.Admin.Controllers
         }
         public ActionResult Home()
         {
+            ViewBag.HomeActive = "class=active";
+            ViewBag.CategoryActive = "";
+            ViewBag.ProductActive = "";
+            ViewBag.StockActive = "";
+            ViewBag.OrderActive = "";
+            ViewBag.UserActive = "";
             return View();
         }
 

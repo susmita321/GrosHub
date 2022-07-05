@@ -26,11 +26,14 @@ namespace GrosHub.Models
         }
     
         public virtual DbSet<tblAdmin> tblAdmins { get; set; }
-        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<ProductGallery> ProductGalleries { get; set; }
+        public virtual DbSet<Stock> Stocks { get; set; }
         public virtual DbSet<ProductCategory> ProductCategories { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Rating> Ratings { get; set; }
         public virtual DbSet<Review> Reviews { get; set; }
         public virtual DbSet<ShippingAddress> ShippingAddresses { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

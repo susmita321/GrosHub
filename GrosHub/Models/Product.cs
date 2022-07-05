@@ -14,9 +14,9 @@ namespace GrosHub.Models
     
     public partial class Product
     {
-        public System.Guid ProductId { get; set; }
+        public int ProductId { get; set; }
         public string ProductName { get; set; }
-        public System.Guid CategoryId { get; set; }
+        public Nullable<int> CategoryId { get; set; }
         public string Description { get; set; }
     }
 }

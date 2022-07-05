@@ -5,67 +5,96 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="GrosHUbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'GrosHub.dbo.ProductCategory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="50" />
+          <Property Name="OrderDate" Type="datetime" />
+          <Property Name="ProductId" Type="int" />
+          <Property Name="OrderQty" Type="int" />
+          <Property Name="OrderAmt" Type="nvarchar" MaxLength="50" />
+          <Property Name="StockId" Type="int" />
+          <Property Name="ActualPrice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="DiscountPrice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="DeliveryCharge" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="TotalPrice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="ExpectedDeliveryDate" Type="datetime" />
+          <Property Name="DeliveryStatus" Type="nvarchar" MaxLength="50" />
+          <Property Name="CancelReason" Type="nvarchar" MaxLength="100" />
+        </EntityType>
         <EntityType Name="ProductCategory">
           <Key>
             <PropertyRef Name="CategoryId" />
-            <PropertyRef Name="CategoryName" />
           </Key>
-          <Property Name="CategoryId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="CategoryName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryName" Type="varchar" MaxLength="100" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'GrosHub.dbo.Products' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ProductGallery">
+          <Key>
+            <PropertyRef Name="ProductImageId" />
+          </Key>
+          <Property Name="ProductImageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ImagePath" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProductId" Type="int" />
+        </EntityType>
         <EntityType Name="Products">
           <Key>
             <PropertyRef Name="ProductId" />
-            <PropertyRef Name="ProductName" />
-            <PropertyRef Name="CategoryId" />
-            <PropertyRef Name="Description" />
           </Key>
-          <Property Name="ProductId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="ProductName" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="CategoryId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Description" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="ProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="100" />
+          <Property Name="CategoryId" Type="int" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'GrosHub.dbo.Rating' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Rating">
           <Key>
-            <PropertyRef Name="UserId" />
-            <PropertyRef Name="RatingCounter" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="UserId" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="varchar" MaxLength="50" />
           <Property Name="ProductId" Type="uniqueidentifier" />
-          <Property Name="RatingCounter" Type="int" Nullable="false" />
+          <Property Name="RatingCounter" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'GrosHub.dbo.Review' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Review">
           <Key>
             <PropertyRef Name="ReviewId" />
-            <PropertyRef Name="CustomerId" />
-            <PropertyRef Name="ProductId" />
           </Key>
           <Property Name="ReviewId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CustomerId" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="ProductId" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CustomerId" Type="varchar" MaxLength="50" />
+          <Property Name="ProductId" Type="varchar" MaxLength="50" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'GrosHub.dbo.ShippingAddress' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ShippingAddress">
           <Key>
             <PropertyRef Name="AddressId" />
-            <PropertyRef Name="UserId" />
           </Key>
           <Property Name="AddressId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="50" />
           <Property Name="Address" Type="nvarchar" MaxLength="500" />
           <Property Name="TownCity" Type="nvarchar" MaxLength="50" />
           <Property Name="Country" Type="nvarchar" MaxLength="50" />
           <Property Name="State" Type="nvarchar" MaxLength="50" />
           <Property Name="Pin" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Stock">
+          <Key>
+            <PropertyRef Name="StockId" />
+          </Key>
+          <Property Name="StockId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="int" />
+          <Property Name="CategoryId" Type="int" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Discount" Type="int" />
+          <Property Name="DeliveryChanrge" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="DiscountedPrice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ToTalPrice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="BrandName" Type="nvarchar" MaxLength="50" />
+          <Property Name="StockDate" Type="datetime" />
+          <Property Name="ExpiryDate" Type="datetime" />
+          <Property Name="Amount" Type="nvarchar" MaxLength="50" />
+          <Property Name="Quantity" Type="int" />
         </EntityType>
         <EntityType Name="tblAdmin">
           <Key>
@@ -81,7 +110,7 @@ warning 6002: The table/view 'GrosHub.dbo.ShippingAddress' does not have a prima
           </Key>
           <Property Name="UserId" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="UserName" Type="varchar" MaxLength="50" />
-          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
           <Property Name="Gender" Type="varchar" MaxLength="50" />
           <Property Name="PhoneNo" Type="varchar" MaxLength="50" />
           <Property Name="Email" Type="varchar" MaxLength="50" />
@@ -93,47 +122,16 @@ warning 6002: The table/view 'GrosHub.dbo.ShippingAddress' does not have a prima
           <Property Name="ProfilePicture" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityContainer Name="GrosHUbModelStoreContainer">
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductCategory" EntityType="Self.ProductCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductGallery" EntityType="Self.ProductGallery" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rating" EntityType="Self.Rating" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Review" EntityType="Self.Review" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ShippingAddress" EntityType="Self.ShippingAddress" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stock" EntityType="Self.Stock" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblAdmin" EntityType="Self.tblAdmin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ProductCategory" EntityType="Self.ProductCategory" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [ProductCategory].[CategoryId] AS [CategoryId], 
-    [ProductCategory].[CategoryName] AS [CategoryName]
-    FROM [dbo].[ProductCategory] AS [ProductCategory]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Products" EntityType="Self.Products" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Products].[ProductId] AS [ProductId], 
-    [Products].[ProductName] AS [ProductName], 
-    [Products].[CategoryId] AS [CategoryId], 
-    [Products].[Description] AS [Description]
-    FROM [dbo].[Products] AS [Products]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Rating" EntityType="Self.Rating" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Rating].[UserId] AS [UserId], 
-    [Rating].[ProductId] AS [ProductId], 
-    [Rating].[RatingCounter] AS [RatingCounter]
-    FROM [dbo].[Rating] AS [Rating]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Review" EntityType="Self.Review" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Review].[ReviewId] AS [ReviewId], 
-    [Review].[CustomerId] AS [CustomerId], 
-    [Review].[ProductId] AS [ProductId]
-    FROM [dbo].[Review] AS [Review]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="ShippingAddress" EntityType="Self.ShippingAddress" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [ShippingAddress].[AddressId] AS [AddressId], 
-    [ShippingAddress].[UserId] AS [UserId], 
-    [ShippingAddress].[Address] AS [Address], 
-    [ShippingAddress].[TownCity] AS [TownCity], 
-    [ShippingAddress].[Country] AS [Country], 
-    [ShippingAddress].[State] AS [State], 
-    [ShippingAddress].[Pin] AS [Pin]
-    FROM [dbo].[ShippingAddress] AS [ShippingAddress]</DefiningQuery>
-          </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -141,12 +139,15 @@ warning 6002: The table/view 'GrosHub.dbo.ShippingAddress' does not have a prima
       <Schema Namespace="GrosHUbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="GrosHUbDBContext" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="tblAdmins" EntityType="GrosHUbModel.tblAdmin" />
-          <EntitySet Name="Users" EntityType="GrosHUbModel.User" />
+          <EntitySet Name="Orders" EntityType="GrosHUbModel.Order" />
+          <EntitySet Name="ProductGalleries" EntityType="GrosHUbModel.ProductGallery" />
+          <EntitySet Name="Stocks" EntityType="GrosHUbModel.Stock" />
           <EntitySet Name="ProductCategories" EntityType="GrosHUbModel.ProductCategory" />
           <EntitySet Name="Products" EntityType="GrosHUbModel.Product" />
           <EntitySet Name="Ratings" EntityType="GrosHUbModel.Rating" />
           <EntitySet Name="Reviews" EntityType="GrosHUbModel.Review" />
           <EntitySet Name="ShippingAddresses" EntityType="GrosHUbModel.ShippingAddress" />
+          <EntitySet Name="Users" EntityType="GrosHUbModel.User" />
         </EntityContainer>
         <EntityType Name="tblAdmin">
           <Key>
@@ -156,13 +157,104 @@ warning 6002: The table/view 'GrosHub.dbo.ShippingAddress' does not have a prima
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="AdminName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OrderDate" Type="DateTime" Precision="3" />
+          <Property Name="ProductId" Type="Int32" />
+          <Property Name="OrderQty" Type="Int32" />
+          <Property Name="OrderAmt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StockId" Type="Int32" />
+          <Property Name="ActualPrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="DiscountPrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="DeliveryCharge" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TotalPrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ExpectedDeliveryDate" Type="DateTime" Precision="3" />
+          <Property Name="DeliveryStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CancelReason" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ProductGallery">
+          <Key>
+            <PropertyRef Name="ProductImageId" />
+          </Key>
+          <Property Name="ProductImageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ImagePath" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProductId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Stock">
+          <Key>
+            <PropertyRef Name="StockId" />
+          </Key>
+          <Property Name="StockId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" />
+          <Property Name="CategoryId" Type="Int32" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Discount" Type="Int32" />
+          <Property Name="DeliveryChanrge" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="DiscountedPrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ToTalPrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="BrandName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StockDate" Type="DateTime" Precision="3" />
+          <Property Name="ExpiryDate" Type="DateTime" Precision="3" />
+          <Property Name="Amount" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Quantity" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ProductCategory">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryId" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Rating">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProductId" Type="Guid" />
+          <Property Name="RatingCounter" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Review">
+          <Key>
+            <PropertyRef Name="ReviewId" />
+          </Key>
+          <Property Name="ReviewId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProductId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ShippingAddress">
+          <Key>
+            <PropertyRef Name="AddressId" />
+          </Key>
+          <Property Name="AddressId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="TownCity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Pin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="UserId" />
           </Key>
           <Property Name="UserId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -172,58 +264,6 @@ warning 6002: The table/view 'GrosHub.dbo.ShippingAddress' does not have a prima
           <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Pin" Type="Int32" />
           <Property Name="ProfilePicture" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="ProductCategory">
-          <Key>
-            <PropertyRef Name="CategoryId" />
-            <PropertyRef Name="CategoryName" />
-          </Key>
-          <Property Name="CategoryId" Type="Guid" Nullable="false" />
-          <Property Name="CategoryName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="Product">
-          <Key>
-            <PropertyRef Name="ProductId" />
-            <PropertyRef Name="ProductName" />
-            <PropertyRef Name="CategoryId" />
-            <PropertyRef Name="Description" />
-          </Key>
-          <Property Name="ProductId" Type="Guid" Nullable="false" />
-          <Property Name="ProductName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="CategoryId" Type="Guid" Nullable="false" />
-          <Property Name="Description" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Rating">
-          <Key>
-            <PropertyRef Name="UserId" />
-            <PropertyRef Name="RatingCounter" />
-          </Key>
-          <Property Name="UserId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ProductId" Type="Guid" />
-          <Property Name="RatingCounter" Type="Int32" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Review">
-          <Key>
-            <PropertyRef Name="ReviewId" />
-            <PropertyRef Name="CustomerId" />
-            <PropertyRef Name="ProductId" />
-          </Key>
-          <Property Name="ReviewId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CustomerId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ProductId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="ShippingAddress">
-          <Key>
-            <PropertyRef Name="AddressId" />
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="AddressId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="TownCity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Pin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -240,21 +280,52 @@ warning 6002: The table/view 'GrosHub.dbo.ShippingAddress' does not have a prima
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="GrosHUbModel.User">
-              <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="ProfilePicture" ColumnName="ProfilePicture" />
-                <ScalarProperty Name="Pin" ColumnName="Pin" />
-                <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="Country" ColumnName="Country" />
-                <ScalarProperty Name="TownCity" ColumnName="TownCity" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="GrosHUbModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="CancelReason" ColumnName="CancelReason" />
+                <ScalarProperty Name="DeliveryStatus" ColumnName="DeliveryStatus" />
+                <ScalarProperty Name="ExpectedDeliveryDate" ColumnName="ExpectedDeliveryDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="DeliveryCharge" ColumnName="DeliveryCharge" />
+                <ScalarProperty Name="DiscountPrice" ColumnName="DiscountPrice" />
+                <ScalarProperty Name="ActualPrice" ColumnName="ActualPrice" />
+                <ScalarProperty Name="StockId" ColumnName="StockId" />
+                <ScalarProperty Name="OrderAmt" ColumnName="OrderAmt" />
+                <ScalarProperty Name="OrderQty" ColumnName="OrderQty" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductGalleries">
+            <EntityTypeMapping TypeName="GrosHUbModel.ProductGallery">
+              <MappingFragment StoreEntitySet="ProductGallery">
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="ProductImageId" ColumnName="ProductImageId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stocks">
+            <EntityTypeMapping TypeName="GrosHUbModel.Stock">
+              <MappingFragment StoreEntitySet="Stock">
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+                <ScalarProperty Name="StockDate" ColumnName="StockDate" />
+                <ScalarProperty Name="BrandName" ColumnName="BrandName" />
+                <ScalarProperty Name="ToTalPrice" ColumnName="ToTalPrice" />
+                <ScalarProperty Name="DiscountedPrice" ColumnName="DiscountedPrice" />
+                <ScalarProperty Name="DeliveryChanrge" ColumnName="DeliveryChanrge" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="StockId" ColumnName="StockId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -282,6 +353,7 @@ warning 6002: The table/view 'GrosHub.dbo.ShippingAddress' does not have a prima
                 <ScalarProperty Name="RatingCounter" ColumnName="RatingCounter" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -304,6 +376,24 @@ warning 6002: The table/view 'GrosHub.dbo.ShippingAddress' does not have a prima
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="GrosHUbModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="ProfilePicture" ColumnName="ProfilePicture" />
+                <ScalarProperty Name="Pin" ColumnName="Pin" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="TownCity" ColumnName="TownCity" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
