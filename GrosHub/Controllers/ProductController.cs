@@ -13,7 +13,15 @@ namespace GrosHub.Controllers
         // GET: Product
         public ActionResult ProductList()
         {
+            
+           
             var _product = db.Products;
+            return View(_product);
+        }
+        public ActionResult ProductDetails(string id)
+        {
+            int ProductId = Convert.ToInt32(id);
+            var _product = db.Products.Where(product => product.ProductId == ProductId).FirstOrDefault();
             return View(_product);
         }
     }

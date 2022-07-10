@@ -283,6 +283,8 @@
     <Content Include="Content\js\main.js" />
     <Content Include="Content\js\mixitup.min.js" />
     <Content Include="Content\js\owl.carousel.min.js" />
+    <Content Include="Content\Product\2.jpg" />
+    <Content Include="Content\Product\3.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -378,13 +380,12 @@
     <Content Include="Views\UserProfile\Edit.cshtml" />
     <Content Include="Views\UserProfile\Settings.cshtml" />
     <Content Include="Views\Shared\ProductList.cshtml" />
+    <Content Include="Views\Product\ProductDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\FeedBack\" />
-    <Folder Include="Content\profilePicture\" />
-    <Folder Include="Views\Product\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
