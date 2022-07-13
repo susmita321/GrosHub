@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using GrosHub.Models;
+using System.IO;
 
 namespace GrosHub.Areas.Admin.Controllers
 {
@@ -119,6 +120,52 @@ namespace GrosHub.Areas.Admin.Controllers
             db.Products.Remove(product);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult UploadProductImage()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult UploadProductImage(int id,HttpPostedFileBase file)
+        {
+            try
+            {
+                if (file.ContentLength > 0)
+                {
+                    string UserId = Convert.ToString(Session["UserId"]);
+                    string FileName = Path.GetFileName(file.FileName);
+                    string ext = System.IO.Path.GetExtension(FileName).ToLower();
+                    if (ext == ".jpg" || ext == ".png" || ext == ".git")
+                    {
+                        string _path = Path.Combine(Server.MapPath("~/Content/Product"), UserId + ext);
+                        file.SaveAs(_path);
+
+
+                        var _user = db.Users.Where(x => x.UserId.Equals(UserId)).FirstOrDefault();
+
+                        _user.ProfilePicture = "Product/" + UserId + ext;
+                        db.Entry(_user).State = EntityState.Modified;
+                        db.SaveChanges();
+                        ViewBag.Message = "File Uploaded Successfully!!";
+                        @Session["Product"] = "/Content/" + _user.ProfilePicture;
+                    }
+                    else
+                    {
+                        ViewBag.Message = "Invalid file!!";
+                    }
+
+                }
+
+
+                return View();
+            }
+            catch
+            {
+                ViewBag.Message = "File upload failed!!";
+                return View();
+            }
         }
 
         protected override void Dispose(bool disposing)
