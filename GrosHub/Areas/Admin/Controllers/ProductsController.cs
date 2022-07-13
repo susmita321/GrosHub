@@ -128,28 +128,29 @@ namespace GrosHub.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult UploadProductImage(int id,HttpPostedFileBase file)
+        public ActionResult UploadProductImage(HttpPostedFileBase file, string id,ProductGallery obj)
         {
             try
             {
                 if (file.ContentLength > 0)
                 {
-                    string UserId = Convert.ToString(Session["UserId"]);
+                    string ProductImageId = db.ProductGalleries.Max(x=>x.ProductImageId).ToString();
+                    ProductImageId = ProductImageId + 1;
                     string FileName = Path.GetFileName(file.FileName);
                     string ext = System.IO.Path.GetExtension(FileName).ToLower();
                     if (ext == ".jpg" || ext == ".png" || ext == ".git")
                     {
-                        string _path = Path.Combine(Server.MapPath("~/Content/Product"), UserId + ext);
+                        string _path = Path.Combine(Server.MapPath("~/Content/Product"), id + ProductImageId.ToString()+ ext);
                         file.SaveAs(_path);
 
 
-                        var _user = db.Users.Where(x => x.UserId.Equals(UserId)).FirstOrDefault();
-
-                        _user.ProfilePicture = "Product/" + UserId + ext;
-                        db.Entry(_user).State = EntityState.Modified;
+                        //ProductGallery obj = new ProductGallery();
+                        obj.ImagePath = "Product/" + id + ProductImageId.ToString() + ext;
+                        obj.ProductId =Convert.ToInt32(id);
+                        db.ProductGalleries.Add(obj);
                         db.SaveChanges();
                         ViewBag.Message = "File Uploaded Successfully!!";
-                        @Session["Product"] = "/Content/" + _user.ProfilePicture;
+                       // @Session["Product"] = "/Content/" + _user.ProfilePicture;
                     }
                     else
                     {
