@@ -382,6 +382,7 @@
     <Content Include="Views\UserProfile\Settings.cshtml" />
     <Content Include="Views\Shared\ProductList.cshtml" />
     <Content Include="Views\Product\ProductDetails.cshtml" />
+    <Content Include="Views\Shared\View.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
