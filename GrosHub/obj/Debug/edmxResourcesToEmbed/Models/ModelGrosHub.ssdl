@@ -34,6 +34,7 @@
     <Property Name="ProductImageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ImagePath" Type="nvarchar" MaxLength="50" />
     <Property Name="ProductId" Type="int" />
+    <Property Name="IsPrimary" Type="bit" />
   </EntityType>
   <EntityType Name="Products">
     <Key>
@@ -43,15 +44,6 @@
     <Property Name="ProductName" Type="nvarchar" MaxLength="100" />
     <Property Name="CategoryId" Type="int" />
     <Property Name="Description" Type="nvarchar" MaxLength="500" />
-  </EntityType>
-  <EntityType Name="Rating">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="UserId" Type="varchar" MaxLength="50" />
-    <Property Name="ProductId" Type="uniqueidentifier" />
-    <Property Name="RatingCounter" Type="int" />
   </EntityType>
   <EntityType Name="Review">
     <Key>
@@ -72,6 +64,7 @@
     <Property Name="Country" Type="nvarchar" MaxLength="50" />
     <Property Name="State" Type="nvarchar" MaxLength="50" />
     <Property Name="Pin" Type="varchar" MaxLength="50" />
+    <Property Name="IsCurrent" Type="bit" />
   </EntityType>
   <EntityType Name="Stock">
     <Key>
@@ -90,6 +83,9 @@
     <Property Name="ExpiryDate" Type="datetime" />
     <Property Name="Amount" Type="nvarchar" MaxLength="50" />
     <Property Name="Quantity" Type="int" />
+    <Property Name="BalanceQuantity" Type="int" />
+    <Property Name="Weight" Type="nvarchar" MaxLength="50" />
+    <Property Name="ShippingDay" Type="int" />
   </EntityType>
   <EntityType Name="tblAdmin">
     <Key>
@@ -121,7 +117,6 @@
     <EntitySet Name="ProductCategory" EntityType="Self.ProductCategory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProductGallery" EntityType="Self.ProductGallery" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Rating" EntityType="Self.Rating" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Review" EntityType="Self.Review" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ShippingAddress" EntityType="Self.ShippingAddress" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Stock" EntityType="Self.Stock" Schema="dbo" store:Type="Tables" />

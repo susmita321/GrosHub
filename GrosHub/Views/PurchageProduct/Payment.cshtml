@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "Payment";
+    Layout = "~/Views/Shared/_LayoutHeader.cshtml";
+}
+
+<h2>Payment</h2>
+
+<section class="checkout spad">
+    <div class="container">
+
+        <div class="checkout__form">
+            <h4>Billing Details</h4>
+
+            <div class="row">
+                <div class="col-lg-8 col-md-6">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="checkout__input">
+                                @using (Html.BeginForm("ChangeShippingAddress", "PurchageProduct"))
+                                {
+                                    @Html.RadioButton("rdlCP", "1") @Html.Label("Card")
+                                    @Html.RadioButton("rdlGP", "2") @Html.Label("Google Pay")
+                                    @Html.RadioButton("rdlCD", "3") @Html.Label("Cash On Delivery")
+                                }
+                                @Html.ActionLink("Confirm Order", "ConfirmOrder", "PurchageProduct", null)
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+               
+    </div>
+</section>
+

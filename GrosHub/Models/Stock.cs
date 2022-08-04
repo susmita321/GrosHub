@@ -27,5 +27,8 @@ namespace GrosHub.Models
         public Nullable<System.DateTime> ExpiryDate { get; set; }
         public string Amount { get; set; }
         public Nullable<int> Quantity { get; set; }
+        public Nullable<int> BalanceQuantity { get; set; }
+        public string Weight { get; set; }
+        public Nullable<int> ShippingDay { get; set; }
     }
 }

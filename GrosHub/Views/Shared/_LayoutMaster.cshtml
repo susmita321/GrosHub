@@ -61,6 +61,7 @@
                         <li>@Html.ActionLink("Add Profile Picture", "ProfilePicture", "UserProfile")</li>
                         <li>@Html.ActionLink("Change Password", "ChangePassword", "UserProfile")</li>
                         <li>@Html.ActionLink("Settings", "Settings", "UserProfile")</li>
+                        <li>@Html.ActionLink("Shipping Address", "AddShippingAddress", "UserProfile")</li>
                     </ul>
                 }
             </div>
@@ -142,6 +143,7 @@
                                         <li>@Html.ActionLink("Add Profile Picture", "ProfilePicture", "UserProfile")</li>
                                         <li>@Html.ActionLink("Change Password", "ChangePassword", "UserProfile")</li>
                                         <li>@Html.ActionLink("Settings", "Settings", "UserProfile")</li>
+                                        <li>@Html.ActionLink("Shipping Address", "AddShippingAddress", "UserProfile")</li>
                                     </ul>
                                 }
                             </div>
@@ -177,8 +179,9 @@
                                 <ul class="header__menu__dropdown">
                                     <li><a href="./shop-details.html">Shop Details</a></li>
                                     <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                                    <li><a href="./checkout.html">Check Out</a></li>
                                     <li><a href="./blog-details.html">Blog Details</a></li>
+                                    <li><a href="./checkout.html">Check Out</a></li>
+
                                 </ul>
                             </li>
                             <li><a href="./blog.html">Blog</a></li>
@@ -217,7 +220,14 @@
                             {
                                 <li><a href="#">@item.CategoryName</a></li>
 
+
+
                             }
+
+                            @*@Html.DropDownList("Select", new List<SelectListItem>
+        {
+           new SelectListItem{ Text=item.CategoryName, Value = item.CategoryName }
+        })*@
                         </ul>
                     </div>
                 </div>

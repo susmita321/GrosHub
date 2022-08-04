@@ -17,5 +17,6 @@ namespace GrosHub.Models
         public int ProductImageId { get; set; }
         public string ImagePath { get; set; }
         public Nullable<int> ProductId { get; set; }
+        public Nullable<bool> IsPrimary { get; set; }
     }
 }

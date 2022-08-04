@@ -1,8 +1,11 @@
 ﻿@*@model GrosHub.Models.Product*@
+@using GrosHub.Models;
 
 @{
     ViewBag.Title = "ProductDetails";
     Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+    var ProductImage =(IEnumerable<ProductGallery>) ViewData["ProductImage"];
+   
 }
 <!-- Hero Section Begin -->
 
@@ -21,20 +24,18 @@
                              src="/Content/@item["ImagePath"]" alt="">
                     </div>
                     <div class="product__details__pic__slider owl-carousel">
-                        <img data-imgbigurl="/Content/img/product/details/product-details-2.jpg"
-                             src="/Content/img/product/details/thumb-1.jpg" alt="">
-                        <img data-imgbigurl="/Content/img/product/details/product-details-3.jpg"
-                             src="/Content/img/product/details/thumb-2.jpg" alt="">
-                        <img data-imgbigurl="/Content/img/product/details/product-details-5.jpg"
-                             src="/Content/img/product/details/thumb-3.jpg" alt="">
-                        <img data-imgbigurl="/Content/img/product/details/product-details-4.jpg"
-                             src="/Content/img/product/details/thumb-4.jpg" alt="">
+                        @foreach (var image in ProductImage)
+                        {
+                        <img data-imgbigurl="/Content/@image.ImagePath"
+                             src="/Content/@image.ImagePath" alt="">
+                        }
+
                     </div>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6">
                 <div class="product__details__text">
-                  
+
                     <h3>@item["ProductName"]</h3>
                     <div class="product__details__rating">
                         <i class="fa fa-star"></i>
@@ -47,7 +48,7 @@
                     <div class="product__details__price">@item["Price"]</div>
                     <p>
                         @item["Description"]
-                        
+
                     </p>
                     <div class="product__details__quantity">
                         <div class="quantity">
@@ -57,6 +58,9 @@
                         </div>
                     </div>
                     <a href="#" class="primary-btn">ADD TO CARD</a>
+                    @*<a href="#" class="primary-btn">Buy Now</a>*@
+                    @Html.ActionLink("Buy Now", "BuyNow", "PurchageProduct", new { id = item["ProductId"] }, null)
+                    @*, @class = "primary-btn"*@
                     <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
                     <ul>
                         <li><b>Availability</b> <span>@item["Availability"]</span></li>

@@ -34,6 +34,7 @@
     <EntitySetMapping Name="ProductGalleries">
       <EntityTypeMapping TypeName="GrosHUbModel.ProductGallery">
         <MappingFragment StoreEntitySet="ProductGallery">
+          <ScalarProperty Name="IsPrimary" ColumnName="IsPrimary" />
           <ScalarProperty Name="ProductId" ColumnName="ProductId" />
           <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
           <ScalarProperty Name="ProductImageId" ColumnName="ProductImageId" />
@@ -43,6 +44,9 @@
     <EntitySetMapping Name="Stocks">
       <EntityTypeMapping TypeName="GrosHUbModel.Stock">
         <MappingFragment StoreEntitySet="Stock">
+          <ScalarProperty Name="ShippingDay" ColumnName="ShippingDay" />
+          <ScalarProperty Name="Weight" ColumnName="Weight" />
+          <ScalarProperty Name="BalanceQuantity" ColumnName="BalanceQuantity" />
           <ScalarProperty Name="Quantity" ColumnName="Quantity" />
           <ScalarProperty Name="Amount" ColumnName="Amount" />
           <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
@@ -77,28 +81,10 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Ratings">
-      <EntityTypeMapping TypeName="GrosHUbModel.Rating">
-        <MappingFragment StoreEntitySet="Rating">
-          <ScalarProperty Name="RatingCounter" ColumnName="RatingCounter" />
-          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Reviews">
-      <EntityTypeMapping TypeName="GrosHUbModel.Review">
-        <MappingFragment StoreEntitySet="Review">
-          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
-          <ScalarProperty Name="ReviewId" ColumnName="ReviewId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="ShippingAddresses">
       <EntityTypeMapping TypeName="GrosHUbModel.ShippingAddress">
         <MappingFragment StoreEntitySet="ShippingAddress">
+          <ScalarProperty Name="IsCurrent" ColumnName="IsCurrent" />
           <ScalarProperty Name="Pin" ColumnName="Pin" />
           <ScalarProperty Name="State" ColumnName="State" />
           <ScalarProperty Name="Country" ColumnName="Country" />
@@ -124,6 +110,15 @@
           <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="UserName" ColumnName="UserName" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reviews">
+      <EntityTypeMapping TypeName="GrosHUbModel.Review">
+        <MappingFragment StoreEntitySet="Review">
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="ReviewId" ColumnName="ReviewId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

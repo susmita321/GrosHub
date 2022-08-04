@@ -235,6 +235,23 @@ namespace GrosHub.Controllers
         {
             return View();
         }
+
+        public ActionResult AddShippingAddress()
+        {
+            ViewData.Add("Category", db.ProductCategories);
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddShippingAddress(ShippingAddress _obj)
+        {
+            ViewData.Add("Category", db.ProductCategories);
+            _obj.UserId = Convert.ToString(Session["UserId"]);
+            db.ShippingAddresses.Add(_obj);
+            db.SaveChanges();
+            ViewBag.Message = "Shipping Address added successfully";
+            return View();
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

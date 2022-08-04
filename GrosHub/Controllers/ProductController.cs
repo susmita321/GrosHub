@@ -33,8 +33,12 @@ namespace GrosHub.Controllers
             DataTable dt = new DataTable();
             da.Fill(dt);
             ViewData.Add("Category", db.ProductCategories);
+            //ViewData.Add("ProductImage", db.ProductGalleries.Where(p=>p.ProductId== ProductId).FirstOrDefault());
+            var image = db.ProductGalleries.Where(p => p.ProductId == ProductId).FirstOrDefault();
+            ViewData.Add("ProductImage", db.ProductGalleries);
             // var _product = db.Products.Where(product => product.ProductId == ProductId).FirstOrDefault();
             return View(dt);
         }
+        
     }
 }

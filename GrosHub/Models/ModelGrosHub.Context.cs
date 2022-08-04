@@ -12,6 +12,8 @@ namespace GrosHub.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class GrosHUbDBContext : DbContext
     {
@@ -31,9 +33,26 @@ namespace GrosHub.Models
         public virtual DbSet<Stock> Stocks { get; set; }
         public virtual DbSet<ProductCategory> ProductCategories { get; set; }
         public virtual DbSet<Product> Products { get; set; }
-        public virtual DbSet<Rating> Ratings { get; set; }
-        public virtual DbSet<Review> Reviews { get; set; }
         public virtual DbSet<ShippingAddress> ShippingAddresses { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Review> Reviews { get; set; }
+    
+        public virtual ObjectResult<usp_GetCategoryDetails_Result> usp_GetCategoryDetails(Nullable<int> productId)
+        {
+            var productIdParameter = productId.HasValue ?
+                new ObjectParameter("ProductId", productId) :
+                new ObjectParameter("ProductId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_GetCategoryDetails_Result>("usp_GetCategoryDetails", productIdParameter);
+        }
+    
+        public virtual ObjectResult<usp_GetProductDetails_Result> usp_GetProductDetails(Nullable<int> productId)
+        {
+            var productIdParameter = productId.HasValue ?
+                new ObjectParameter("ProductId", productId) :
+                new ObjectParameter("ProductId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_GetProductDetails_Result>("usp_GetProductDetails", productIdParameter);
+        }
     }
 }

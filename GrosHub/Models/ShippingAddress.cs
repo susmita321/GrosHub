@@ -21,5 +21,6 @@ namespace GrosHub.Models
         public string Country { get; set; }
         public string State { get; set; }
         public string Pin { get; set; }
+        public Nullable<bool> IsCurrent { get; set; }
     }
 }
