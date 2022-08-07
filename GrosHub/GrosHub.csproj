@@ -439,6 +439,7 @@
     <Content Include="Views\Shared\_LayoutHeader.cshtml" />
     <Content Include="Views\UserProfile\AddShippingAddress.cshtml" />
     <Content Include="Views\PurchageProduct\Payment.cshtml" />
+    <Content Include="Views\PurchageProduct\ConfirmOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

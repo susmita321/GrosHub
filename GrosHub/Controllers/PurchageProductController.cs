@@ -28,5 +28,9 @@ namespace GrosHub.Controllers
            
             return View();
         }
+        public ActionResult ConfirmOrder()
+        {
+            return View();
+        }
     }
 }

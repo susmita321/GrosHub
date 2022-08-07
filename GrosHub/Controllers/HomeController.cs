@@ -23,14 +23,13 @@ namespace GrosHub.Controllers
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             da.Fill(dt);
+           
+            
             ViewData.Add("Category", db.ProductCategories);
-            // var product = db.Products;
-            //var ProductCategories = db.ProductCategories;
+            
             if (Session["CategoryId"]!=null)
             {
                 Guid CategoryId =(Guid)Session["CategoryId"];
-                //product = db.Products.Where(x => x.CategoryId==CategoryId).FirstOrDefault();
-
             }
             if (Session["UserId"] != null)
             {
@@ -43,12 +42,35 @@ namespace GrosHub.Controllers
 
         }
         [HttpPost]
-        public ActionResult Index(Product obj)
+        public ActionResult Index(String SearchText)
         {
             Session["CategoryId"] = "89408cb9-4a37-44c1-8b7f-7da17416dcda";
             return RedirectToAction("Index");
         }
-            public ActionResult About()
+        
+        public ActionResult SearchByCategoryId(string id)
+        {
+            SqlCommand cmd = new SqlCommand("[dbo].[usp_GetCategoryDetails]", con);
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.Parameters.Add("@CategoryId", SqlDbType.Int).Value = id;
+           
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            return View("Index",dt);
+        }
+        
+        public ActionResult SearchByText(String SearchKey)
+        {
+            SqlCommand cmd = new SqlCommand("[dbo].[usp_GetCategoryDetails]", con);
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.Parameters.Add("@SearchText", SqlDbType.NVarChar).Value = SearchKey;
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            return View("Index", dt);
+        }
+        public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
 
