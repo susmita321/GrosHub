@@ -38,7 +38,10 @@ namespace GrosHub.Controllers
                
               
             }
-            return View(dt);
+            ViewData["dt"] = dt;
+            Product p = new Product();
+            // return View(db.Products.ToList());
+            return View(p);
 
         }
         [HttpPost]
@@ -57,18 +60,25 @@ namespace GrosHub.Controllers
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             da.Fill(dt);
-            return View("Index",dt);
+            ViewData["dt"] = dt;
+            Product p = new Product();
+            return View("Index",p);
         }
-        
-        public ActionResult SearchByText(String SearchKey)
+
+        [HttpPost]
+        public ActionResult SearchByText(Product SearchKey)
         {
             SqlCommand cmd = new SqlCommand("[dbo].[usp_GetCategoryDetails]", con);
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            cmd.Parameters.Add("@SearchText", SqlDbType.NVarChar).Value = SearchKey;
+            cmd.Parameters.Add("@ProductId", SqlDbType.Int).Value = null;
+            cmd.Parameters.Add("@CategoryId", SqlDbType.Int).Value = null;
+            cmd.Parameters.Add("@SearchText", SqlDbType.NVarChar).Value = SearchKey.ProductName;
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             da.Fill(dt);
-            return View("Index", dt);
+            ViewData["dt"] = dt;
+            Product p = new Product();
+            return View("Index", p);
         }
         public ActionResult About()
         {

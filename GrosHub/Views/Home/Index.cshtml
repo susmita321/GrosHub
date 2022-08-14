@@ -1,25 +1,32 @@
 ﻿@*@model IEnumerable<GrosHub.Models.Product>*@
-
+@using System.Data;
+@using GrosHub.Models;
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+    DataView dv = new DataView((DataTable)ViewData["dt"]);
+   
+    GrosHUbDBContext db = new GrosHUbDBContext();
 }
 
 <!-- Hero Section Begin -->
-
-
 <!-- Hero Section End -->
 <!-- Featured Section Begin -->
 <section class="featured spad">
     <div class="container">
-
-
-        @foreach (var item in Model.Rows)
+        @foreach (var item in db.ProductCategories)
         {
-            @item["CategoryName"]
+            string CategoryId = Convert.ToString(item.CategoryId);
+            dv.RowFilter = "CategoryId='"+ CategoryId + "'";
+
+            <div>@item.CategoryName</div>
+            foreach (DataRowView rowView in dv)
+            {
+                DataRow row = rowView.Row;
+                // @item["CategoryName"]
             <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
                 <div class="featured__item">
-                    <div class="featured__item__pic set-bg" data-setbg="/Content/@item["ImagePath"]">
+                    <div class="featured__item__pic set-bg" data-setbg="/Content/@row["ImagePath"]">
 
                         <ul class="featured__item__pic__hover">
                             <li><a href="#"><i class="fa fa-heart"></i></a></li>
@@ -30,19 +37,19 @@
                     <div class="featured__item__text">
                         <h6>
                             @*@row["ProductName"]*@
-                            @{ string ProductName = Convert.ToString(item["ProductName"]);}
-                            @Html.ActionLink(@ProductName, "ProductDetails", "Product", new { id = item["ProductId"] }, null)
+                            @{ string ProductName = Convert.ToString(row["ProductName"]);}
+                            @Html.ActionLink(@ProductName, "ProductDetails", "Product", new { id = row["ProductId"] }, null)
 
 
 
                         </h6>
-                        <h5>@item["Price"]</h5>
-                        <h5>@item["Availability"]</h5>
+                        <h5>@row["Price"]</h5>
+                        <h5>@row["Availability"]</h5>
                     </div>
                 </div>
             </div>
-        }
-
+                                }
+                                }
 
     </div>
 </section>

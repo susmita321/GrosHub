@@ -18,10 +18,10 @@ namespace GrosHub.Controllers
         // GET: Product
         public ActionResult ProductList()
         {
-            
-           
-            var _product = db.Products;
-            return View(_product);
+
+
+            Product p = new Product();
+            return View(p);
         }
         public ActionResult ProductDetails(string id)
         {
@@ -37,7 +37,9 @@ namespace GrosHub.Controllers
             var image = db.ProductGalleries.Where(p => p.ProductId == ProductId).FirstOrDefault();
             ViewData.Add("ProductImage", db.ProductGalleries);
             // var _product = db.Products.Where(product => product.ProductId == ProductId).FirstOrDefault();
-            return View(dt);
+            ViewData["dt"] = dt;
+            Product prod = new Product();
+            return View(prod);
         }
         
     }
