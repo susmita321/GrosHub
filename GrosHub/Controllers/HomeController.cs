@@ -40,7 +40,6 @@ namespace GrosHub.Controllers
             }
             ViewData["dt"] = dt;
             Product p = new Product();
-            // return View(db.Products.ToList());
             return View(p);
 
         }

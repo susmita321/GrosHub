@@ -18,12 +18,13 @@
         {
             string CategoryId = Convert.ToString(item.CategoryId);
             dv.RowFilter = "CategoryId='"+ CategoryId + "'";
-
-            <div>@item.CategoryName</div>
+            if (dv.Count != 0)
+            {
+                <div>@item.CategoryName</div>
+            }
             foreach (DataRowView rowView in dv)
             {
                 DataRow row = rowView.Row;
-                // @item["CategoryName"]
             <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
                 <div class="featured__item">
                     <div class="featured__item__pic set-bg" data-setbg="/Content/@row["ImagePath"]">
@@ -36,7 +37,6 @@
                     </div>
                     <div class="featured__item__text">
                         <h6>
-                            @*@row["ProductName"]*@
                             @{ string ProductName = Convert.ToString(row["ProductName"]);}
                             @Html.ActionLink(@ProductName, "ProductDetails", "Product", new { id = row["ProductId"] }, null)
 
@@ -48,8 +48,8 @@
                     </div>
                 </div>
             </div>
-                                }
-                                }
+            }
+          }
 
     </div>
 </section>
